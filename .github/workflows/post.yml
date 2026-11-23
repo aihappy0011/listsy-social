@@ -1,0 +1,38 @@
+# Hourly 08:35-21:35 IST, on every owner comment, and when the queue changes:
+# reads approval replies, opens a review issue for new posts, then posts at most one due + approved item.
+name: post
+on:
+  schedule:
+    - cron: "5 3-16 * * *"
+  issue_comment:
+    types: [created]
+  push:
+    paths: [queue.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency: post
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MEDIA_BASE: ${{ vars.MEDIA_BASE }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node gh.mjs inbox
+      - run: node gh.mjs review
+      - run: node post.mjs
+      - name: Save queue
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add queue.json
+          git commit -m "queue: update" || exit 0
+          git pull --rebase && git push
