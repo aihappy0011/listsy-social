@@ -60,13 +60,14 @@ async function review() {
   if (!fresh.length) return console.log("No new posts to review.");
   const open = await gh(`/issues?state=open&labels=${LABEL}`);
   if (open.length) return console.log(`Approval issue #${open[0].number} still open — waiting.`);
+  if (!process.env.MEDIA_BASE) throw new Error("MEDIA_BASE variable not set"); // else previews break
   const base = process.env.MEDIA_BASE.replace(/\/$/, "");
   const owner = process.env.GITHUB_REPOSITORY.split("/")[0];
   const parts = fresh.map((p, i) => {
     const dir = `${base}/queue/${p.id}`;
     const caption = fs.readFileSync(path.join(HERE, "queue", p.id, "caption.txt"), "utf8").trim();
     const media = p.type === "reel" ? `🎬 [Reel dekho](${dir}/${p.files[0]})` : `<img src="${dir}/preview.jpg" width="600">`;
-    return `### #${i + 1} · ${p.type} · ${ist(p.at)}\n${media}\n<details><summary>Caption</summary>\n\n${caption}\n</details>`;
+    return `### Post ${i + 1} · ${p.type} · ${ist(p.at)}\n${media}\n<details><summary>Caption</summary>\n\n${caption}\n</details>`;
   });
   const body = `@${owner} ${fresh.length} nayi posts ready hain 👇\n\n${parts.join("\n\n---\n\n")}\n\n---\n` +
     "Sab theek hai to comment mein **HAAN** likho ✅\nKoi hatani ho to: **NAHI 2**\nBaad mein rokna ho to: **STOP**";
