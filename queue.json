@@ -14,5 +14,19 @@
     ],
     "status": "pending",
     "issue": 2
+  },
+  {
+    "id": "202611241900-2026-11-24-packing",
+    "at": "2026-11-24T19:00:00+05:30",
+    "type": "carousel",
+    "files": [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg"
+    ],
+    "status": "pending"
   }
 ]
