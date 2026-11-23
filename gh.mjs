@@ -58,9 +58,6 @@ async function review() {
   const q = load();
   const fresh = q.filter((p) => p.status === "pending" && !p.issue).sort(byTime);
   if (!fresh.length) return console.log("No new posts to review.");
-  // an issue only blocks while it still has pending posts (the list can lag right after inbox closed one)
-  const open = (await gh(`/issues?state=open&labels=${LABEL}`)).filter((i) => q.some((p) => p.issue === i.number && p.status === "pending"));
-  if (open.length) return console.log(`Approval issue #${open[0].number} still open — waiting.`);
   if (!process.env.MEDIA_BASE) throw new Error("MEDIA_BASE variable not set"); // else previews break
   const base = process.env.MEDIA_BASE.replace(/\/$/, "");
   const owner = process.env.GITHUB_REPOSITORY.split("/")[0];
