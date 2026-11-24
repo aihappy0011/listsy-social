@@ -27,7 +27,8 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "pending"
+    "status": "pending",
+    "issue": 4
   },
   {
     "id": "202611251930-2026-11-24-keywords",
@@ -41,6 +42,7 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "pending"
+    "status": "pending",
+    "issue": 4
   }
 ]
