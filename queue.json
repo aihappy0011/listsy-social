@@ -61,5 +61,19 @@
     "approvedBy": "owner in Claude chat 2026-11-24",
     "igId": "18473864431190725",
     "postedAt": "2026-11-24T08:05:58.030Z"
+  },
+  {
+    "id": "202611250900-2026-11-24-order-scheduler",
+    "at": "2026-11-25T09:00:00+05:30",
+    "type": "carousel",
+    "files": [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg"
+    ],
+    "status": "pending"
   }
 ]
