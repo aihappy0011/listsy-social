@@ -57,7 +57,8 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "approved",
-    "approvedBy": "owner in Claude chat 2026-11-24"
+    "status": "failed",
+    "approvedBy": "owner in Claude chat 2026-11-24",
+    "error": "/me: Invalid OAuth access token - Cannot parse access token"
   }
 ]
