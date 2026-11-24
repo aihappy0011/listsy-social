@@ -74,6 +74,7 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "pending"
+    "status": "pending",
+    "issue": 6
   }
 ]
