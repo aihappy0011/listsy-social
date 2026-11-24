@@ -43,3 +43,13 @@ test("owner replies on the approval issue", () => {
   applyReply(a, "stop", 7); assert.equal(a[0].status, "pending"); assert.equal(a[0].issue, undefined);
   assert.match(applyReply(q(), "kya hai", 7), /Samjha nahi/);
 });
+
+import { nextSlot } from "./add.mjs";
+test("next slot: 9am / 5pm / 9pm IST, skips taken and past", () => {
+  const now = Date.parse("2026-11-25T10:00:00+05:30");
+  assert.equal(nextSlot([], now), "2026-11-25T17:00");
+  const q = [{ at: "2026-11-25T17:00:00+05:30", status: "pending" }, { at: "2026-11-25T21:00:00+05:30", status: "rejected" }];
+  assert.equal(nextSlot(q, now), "2026-11-25T21:00");
+  q[1].status = "approved";
+  assert.equal(nextSlot(q, now), "2026-11-26T09:00");
+});

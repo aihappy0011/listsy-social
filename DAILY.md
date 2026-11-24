@@ -12,7 +12,7 @@ Folder: `D:/Projects/ListsyAI-Social` (agent = `agent/`, git root). Password/tok
 4. `agent-inbox/<YYYY-MM-DD>-<topic-slug>/` mein unzip, files `slide-1.jpg … slide-6.jpg` (ChatGPT ke order mein).
 5. `caption.txt` = ChatGPT ke jawab ka **"Caption"** section, word-for-word (page text se copy; "Writing"/"Caption — ..." heading mat lo). Apni taraf se kuch mat jodo.
 6. Sirf toota hua check: slides khulti hain, 2–10 hain, 1080 wide. Design/text pe apni raay mat do.
-7. Queue + push (agla khaali shaam 7:30 IST slot apne aap):
+7. Queue + push (agla khaali slot apne aap: 9:00 / 17:00 / 21:00 IST):
    ```
    cd agent
    node add.mjs ../agent-inbox/<folder> next
@@ -20,4 +20,4 @@ Folder: `D:/Projects/ListsyAI-Social` (agent = `agent/`, git root). Password/tok
    git add -A && git commit -m "queue: <topic> (<date>)" && git pull --rebase && git push
    ```
    Push → GitHub robot owner ko approval issue bhejta hai (GitHub app). Owner HAAN → time pe Instagram post.
-8. Ek line report: kya queue hua, kis din 7:30 pe, ya kya atka.
+8. Ek line report: kya queue hua, kis din kis slot pe, ya kya atka.

@@ -3,7 +3,8 @@
 name: post
 on:
   schedule:
-    - cron: "5 3-16 * * *"
+    - cron: "30 3,11,15 * * *" # 09:00 / 17:00 / 21:00 IST post slots (GitHub may start a few min late)
+    - cron: "5 3-16 * * *" # hourly backup + approval replies
   issue_comment:
     types: [created]
   push:
