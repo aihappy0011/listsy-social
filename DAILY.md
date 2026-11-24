@@ -1,13 +1,13 @@
-# Daily run — Claude ka kaam (roz 11:00 IST)
+# Daily run — Claude ka kaam (roz raat ~22:10 IST)
 
-Owner ka ChatGPT scheduled task **"ListsyAI Instagram Carousel"** roz ~10:00 baje sab kuch banata hai: 6 slides (1080×1350 JPG), caption, hashtags, posting time.
+Owner ka ChatGPT scheduled task **"ListsyAI Instagram Carousel"** roz **raat 9 baje** kal ke liye **3 alag carousels** banata hai: POST 1 — 9:00 AM, POST 2 — 5:00 PM, POST 3 — 9:00 PM (har ek ka ZIP + Caption). Posting slots: 09:00 / 17:00 / 21:00 IST.
 **Claude kuch nahi banata** — na slides, na caption, na prompt. Sirf uthao → queue → push. (Owner: "tum apni style mein mat karo, ChatGPT sara kaam karega, tumhe bas nikalna hai, post karna hai.")
 
 Folder: `D:/Projects/ListsyAI-Social` (agent = `agent/`, git root). Password/token kabhi nahi.
 
 ## Steps
 1. Browser pane (built-in browser) → `https://chatgpt.com/scheduled` → **ListsyAI Instagram Carousel**. Login nahi → ruk jao, report "ChatGPT login chahiye".
-2. Sabse **neeche wala jawab** = aaj ka. `agent/queue/` mein uska topic pehle se hai, ya jawab "paused"/slides nahi → report karo, kuch mat karo.
+2. Sabse **neeche wala jawab** = aaj raat ka (3 posts). Har post ke liye steps 3–7 alag karo, POST 1 pehle. `agent/queue/` mein uska topic pehle se hai, ya jawab "paused"/slides nahi → report karo, kuch mat karo.
 3. ZIP download: `find` "ZIP" → aaj ke jawab wala link click. File `D:/Downloads` mein `.tmp` naam se aati hai aur **browser use thodi der mein mita deta hai** → click ke turant baad newest file (`file` = "Zip archive") ko `agent-inbox/` mein copy karo, phir Downloads wali hata do.
 4. `agent-inbox/<YYYY-MM-DD>-<topic-slug>/` mein unzip, files `slide-1.jpg … slide-6.jpg` (ChatGPT ke order mein).
 5. `caption.txt` = ChatGPT ke jawab ka **"Caption"** section, word-for-word (page text se copy; "Writing"/"Caption — ..." heading mat lo). Apni taraf se kuch mat jodo.
