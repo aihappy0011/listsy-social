@@ -44,5 +44,20 @@
     ],
     "status": "pending",
     "issue": 4
+  },
+  {
+    "id": "202611240546-2026-11-22-ai-listing",
+    "at": "2026-11-24T05:46:00+05:30",
+    "type": "carousel",
+    "files": [
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg"
+    ],
+    "status": "approved",
+    "approvedBy": "owner in Claude chat 2026-11-24"
   }
 ]
