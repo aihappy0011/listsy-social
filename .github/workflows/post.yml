@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      IG_USER_ID: "17841452464877076" # @listsyai (public id, not a secret)
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MEDIA_BASE: ${{ vars.MEDIA_BASE }}
     steps:

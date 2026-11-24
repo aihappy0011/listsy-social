@@ -6,7 +6,8 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { alert } from "./gh.mjs";
 
-const API = "https://graph.instagram.com/v23.0";
+// IG_USER_ID set = Business portfolio (system-user) token → Facebook Graph; else Instagram-login token.
+const API = process.env.IG_USER_ID ? "https://graph.facebook.com/v23.0" : "https://graph.instagram.com/v23.0";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const QUEUE = path.join(HERE, "queue.json");
 
@@ -49,7 +50,7 @@ async function waitReady(id) {
 }
 
 async function publish(p, caption) {
-  const { user_id } = await call("/me", { fields: "user_id" }, "GET");
+  const user_id = process.env.IG_USER_ID || (await call("/me", { fields: "user_id" }, "GET")).user_id;
   const url = (f) => `${process.env.MEDIA_BASE.replace(/\/$/, "")}/queue/${p.id}/${f}`;
   const media = (params) => call(`/${user_id}/media`, params);
   let id;
