@@ -1,5 +1,6 @@
 // Put a finished post/reel into the queue as "pending" (waits for owner's approval).
-// Usage: node add.mjs <source-folder-or-mp4> <when, e.g. 2026-11-25T10:00> [caption.txt]
+// Usage: node add.mjs <source-folder-or-mp4> <when: 2026-11-25T10:00 | next> [caption.txt]
+//   "next" = first free day at 19:30 IST (today if 19:30 hasn't passed) — one post per evening, backlog rolls forward
 //   folder with slide-*.png|jpg + caption.txt -> carousel (or image if one slide); .mp4 -> reel
 import fs from "node:fs";
 import path from "node:path";
@@ -8,8 +9,21 @@ import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const sharp = createRequire("D:/Projects/SellerKit/package.json")("sharp");
-const [src, when, capArg] = process.argv.slice(2);
-if (!src || !when) throw new Error("usage: node add.mjs <folder|file.mp4> <YYYY-MM-DDTHH:MM> [caption.txt]");
+const qf = path.join(HERE, "queue.json");
+const queue = fs.existsSync(qf) ? JSON.parse(fs.readFileSync(qf, "utf8")) : [];
+const [src, whenArg, capArg] = process.argv.slice(2);
+if (!src || !whenArg) throw new Error("usage: node add.mjs <folder|file.mp4> <YYYY-MM-DDTHH:MM|next> [caption.txt]");
+
+function nextSlot() {
+  const taken = new Set(queue.filter((p) => p.status !== "rejected").map((p) => p.at.slice(0, 10)));
+  const istNow = new Date(Date.now() + 5.5 * 3600e3); // IST wall clock in UTC fields
+  for (let d = 0; d < 365; d++) {
+    const day = new Date(istNow.getTime() + d * 86400e3).toISOString().slice(0, 10);
+    if (taken.has(day) || Date.parse(`${day}T19:30:00+05:30`) <= Date.now()) continue;
+    return `${day}T19:30`;
+  }
+}
+const when = whenArg === "next" ? nextSlot() : whenArg;
 const at = `${when.length === 16 ? when + ":00" : when}+05:30`;
 if (Number.isNaN(Date.parse(at))) throw new Error(`bad time: ${when}`);
 
@@ -41,8 +55,6 @@ const cap = capArg || (isReel ? null : path.join(src, "caption.txt"));
 if (!cap || !fs.existsSync(cap)) throw new Error("caption.txt not found — pass it as 3rd argument");
 fs.copyFileSync(cap, path.join(dir, "caption.txt"));
 
-const qf = path.join(HERE, "queue.json");
-const queue = fs.existsSync(qf) ? JSON.parse(fs.readFileSync(qf, "utf8")) : [];
 const type = isReel ? "reel" : files.length === 1 ? "image" : "carousel";
 queue.push({ id, at, type, files, status: "pending" });
 fs.writeFileSync(qf, JSON.stringify(queue, null, 2) + "\n");

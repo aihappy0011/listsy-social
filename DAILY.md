@@ -1,23 +1,23 @@
 # Daily run — Claude ka kaam (roz 11:00 IST)
 
-Owner ka ChatGPT scheduled task **"ListsyAI Instagram Carousel"** roz 10:00 baje 6 ready slides (1080×1350 JPG, text ke saath) banata hai. Claude ka kaam: unhe uthao → caption → queue → push. Nayi slides khud mat banao.
+Owner ka ChatGPT scheduled task **"ListsyAI Instagram Carousel"** roz ~10:00 baje sab kuch banata hai: 6 slides (1080×1350 JPG), caption, hashtags, posting time.
+**Claude kuch nahi banata** — na slides, na caption, na prompt. Sirf uthao → queue → push. (Owner: "tum apni style mein mat karo, ChatGPT sara kaam karega, tumhe bas nikalna hai, post karna hai.")
 
-Folder: `D:/Projects/ListsyAI-Social` (agent = `agent/`, git root). Rules: password/token kabhi nahi; HANDOFF/brain update nahi chahiye (roz ka routine).
+Folder: `D:/Projects/ListsyAI-Social` (agent = `agent/`, git root). Password/token kabhi nahi.
 
 ## Steps
-1. Browser pane (built-in browser) → `https://chatgpt.com/scheduled` → **ListsyAI Instagram Carousel** kholo. Login nahi hai to ruk jao aur report karo "ChatGPT login chahiye".
-2. Sabse **neeche wala (aaj ka)** jawab dekho. Aaj ka jawab nahi hai / "paused" / slides nahi → report karo, kuch queue mat karo.
-3. Download: aaj ke jawab mein "ZIP" wala link (`find` "ZIP") click karo. Na ho to har "Download file" button ek-ek karke.
-   Files `D:/Downloads` mein aati hain (ZIP kabhi `.tmp` naam se — `file` command se check karo "Zip archive").
-4. `agent-inbox/<YYYY-MM-DD>-<topic-slug>/` mein unzip, files ka naam `slide-1.jpg … slide-N.jpg` (ChatGPT ke order mein). `D:/Downloads` se apni download ki hui file hata do.
-5. Review sheet bana ke **dekho** (Read tool): text kata/ulta, galat spelling, galat promise (sirf `../FEATURES-AUDIT.md` ke LIVE tools; trial 7 din). Kharab ho to queue mat karo, report karo.
-6. `caption.txt` likho (Hinglish): hook line, 3–5 lines value, CTA "👉 listsyai.com — 7 din free", 8–12 hashtags.
-7. Queue + push (aaj 19:00 IST; agar 19:00 nikal gaya to kal 10:00):
+1. Browser pane (built-in browser) → `https://chatgpt.com/scheduled` → **ListsyAI Instagram Carousel**. Login nahi → ruk jao, report "ChatGPT login chahiye".
+2. Sabse **neeche wala jawab** = aaj ka. `agent/queue/` mein uska topic pehle se hai, ya jawab "paused"/slides nahi → report karo, kuch mat karo.
+3. ZIP download: `find` "ZIP" → aaj ke jawab wala link click. File `D:/Downloads` mein `.tmp` naam se aati hai aur **browser use thodi der mein mita deta hai** → click ke turant baad newest file (`file` = "Zip archive") ko `agent-inbox/` mein copy karo, phir Downloads wali hata do.
+4. `agent-inbox/<YYYY-MM-DD>-<topic-slug>/` mein unzip, files `slide-1.jpg … slide-6.jpg` (ChatGPT ke order mein).
+5. `caption.txt` = ChatGPT ke jawab ka **"Caption"** section, word-for-word (page text se copy; "Writing"/"Caption — ..." heading mat lo). Apni taraf se kuch mat jodo.
+6. Sirf toota hua check: slides khulti hain, 2–10 hain, 1080 wide. Design/text pe apni raay mat do.
+7. Queue + push (agla khaali shaam 7:30 IST slot apne aap):
    ```
    cd agent
-   node add.mjs ../agent-inbox/<folder> <YYYY-MM-DD>T19:00
+   node add.mjs ../agent-inbox/<folder> next
    node post.mjs --dry-run
    git add -A && git commit -m "queue: <topic> (<date>)" && git pull --rebase && git push
    ```
-   Push hote hi GitHub robot owner ko approval issue bhejta hai (phone pe GitHub app). Owner HAAN likhe → time pe post.
-8. Ek line report: kya queue hua, kis time, ya kya fail hua.
+   Push → GitHub robot owner ko approval issue bhejta hai (GitHub app). Owner HAAN → time pe Instagram post.
+8. Ek line report: kya queue hua, kis din 7:30 pe, ya kya atka.

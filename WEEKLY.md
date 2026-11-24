@@ -1,4 +1,6 @@
-# Weekly run — Claude ka kaam (har Sunday)
+# (PURANA — use mat karo) Weekly run
+
+> Owner ne 2026-11-24 ko badla: content ab owner ka ChatGPT task banata hai. Roz ka kaam `DAILY.md` mein hai.
 
 Ye Claude ka prompt hai. Owner ko kuch nahi karna; owner sirf GitHub app mein approval issue pe HAAN likhta hai.
 
