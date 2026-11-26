@@ -77,7 +77,8 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "pending",
-    "issue": 6
+    "status": "approved",
+    "issue": 6,
+    "approvedBy": "owner in Claude chat 2026-11-26"
   }
 ]
