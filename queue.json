@@ -27,9 +27,10 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "approved",
+    "status": "failed",
     "issue": 4,
-    "approvedBy": "owner in Claude chat 2026-11-26"
+    "approvedBy": "owner in Claude chat 2026-11-26",
+    "error": "/17841452464877076/media: API access blocked."
   },
   {
     "id": "202611251930-2026-11-24-keywords",
