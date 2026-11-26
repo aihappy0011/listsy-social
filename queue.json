@@ -45,8 +45,9 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "pending",
-    "issue": 4
+    "status": "approved",
+    "issue": 4,
+    "approvedBy": "owner in Claude chat 2026-11-26"
   },
   {
     "id": "202611240546-2026-11-22-ai-listing",
