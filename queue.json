@@ -27,9 +27,11 @@
       "5.jpg",
       "6.jpg"
     ],
-    "status": "approved",
+    "status": "posted",
     "issue": 4,
-    "approvedBy": "owner in Claude chat 2026-11-26"
+    "approvedBy": "owner in Claude chat 2026-11-26",
+    "igId": "18152385031569786",
+    "postedAt": "2026-11-26T18:07:58.755Z"
   },
   {
     "id": "202611251930-2026-11-24-keywords",
